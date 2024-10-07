@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divisibility by 18 Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Divisibility by 18 Checker</h1>
+    <form id="divisibilityForm">
+        <label for="number">Enter a number:</label>
+        <input type="number" id="number" required>
+        <button type="submit">Check</button>
+    </form>
+    <div class="result" id="result"></div>
+
+    <script>
+        document.getElementById('divisibilityForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const number = parseInt(document.getElementById('number').value);
+            const divisor = 18;
+            let resultMessage;
+
+            if (number % divisor === 0) {
+                const count = number / divisor;
+                resultMessage = `${divisor} x ${count} times`;
+            } else {
+                const nextDivisible = number + (divisor - (number % divisor));
+                const count = nextDivisible / divisor;
+                resultMessage = `${number} is not divisible by ${divisor}. The next number divisible by ${divisor} is ${nextDivisible}, which is ${divisor} x ${count} times.`;
+            }
+
+            document.getElementById('result').innerText = resultMessage;
+        });
+    </script>
+</body>
+</html>
